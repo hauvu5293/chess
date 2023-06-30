@@ -40,7 +40,12 @@ contract ChessGame {
     
     function isValidMove(address piece, uint fromX, uint fromY, uint toX, uint toY) internal view returns (bool) {
         // Check if move is valid
-    }
+        // ...
+        // Reset timer for next turn
+        if (turn % 2 == 1) {
+            turnStartTime = block.timestamp;
+        }
+        return true;
     
     function isCheckmate(address player) internal view returns (bool) {
         // Check if player is in checkmate

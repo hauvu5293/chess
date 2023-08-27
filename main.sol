@@ -1,19 +1,19 @@
 pragma solidity ^0.8.0;
 
 contract ChessGame {
-    address public player1;
-    address public player2;
+    address public player01;
+    address public player02;
     uint public turn = 1;
     bool public gameFinished;
     mapping(uint => mapping(uint => address)) board;
     
     constructor() {
-        player1 = payable(msg.sender);
+        player01 = payable(msg.sender);
     }
     
     function joinGame() public {
-        require(player2 == address(0), "Game is full!");
-        player2 = payable(msg.sender);
+        require(player02 == address(0), "Game is full!");
+        player02 = payable(msg.sender);
     }
     
     function makeMove(uint fromX, uint fromY, uint toX, uint toY) public {
@@ -35,7 +35,7 @@ contract ChessGame {
     }
     
     function getCurrentPlayer() public view returns (address) {
-        return turn % 2 == 1 ? player1 : player2;
+        return turn % 2 == 1 ? player01 : player02;
     }
     
     function isValidMove(address piece, uint fromX, uint fromY, uint toX, uint toY) internal view returns (bool) {
